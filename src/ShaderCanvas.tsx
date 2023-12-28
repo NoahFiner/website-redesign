@@ -25,12 +25,16 @@ export const ShaderCanvas: FC<ShaderCanvasProps> = (props): JSX.Element => {
   };
 
   // deep comparison for the use effect
-  const stringified = JSON.stringify(props.setUniforms);
+  const stringified = props.setUniforms
+    ? JSON.stringify(props.setUniforms)
+    : "";
   useEffect(() => {
-    const uniforms = JSON.parse(stringified);
-    if (sandboxRef && sandboxRef.current) {
-      for (let k in uniforms) {
-        sandboxRef.current.setUniform(k, uniforms[k]);
+    if (stringified) {
+      const uniforms = JSON.parse(stringified);
+      if (sandboxRef && sandboxRef.current) {
+        for (let k in uniforms) {
+          sandboxRef.current.setUniform(k, uniforms[k]);
+        }
       }
     }
   }, [stringified]);
