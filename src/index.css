@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap");
+
+@font-face {
+  font-family: "basteleur";
+  src: url("../public/Basteleur-Moonlight.otf");
+}
+
+body {
+  background-color: #2b3b37;
+  color: #c9d4c6;
+  margin: 0;
+  font-family: "IBM Plex Mono";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
