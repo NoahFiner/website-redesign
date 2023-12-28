@@ -14,6 +14,8 @@ type IntroContent = {
   content: React.ReactElement;
 };
 
+const MAX_SCROLL_IDX = 3;
+
 export default function Home() {
   const [effect, setEffect] = useState(0);
 
@@ -137,7 +139,7 @@ export default function Home() {
             }}
           ></ShaderCanvas>
         </div>
-        <div className="w-full h-full flex relative flex-col justify-center items-end px-12">
+        <div className="w-full h-full flex relative flex-col justify-center items-end md:px-12 p-4">
           <Link to="/me">
             <p
               className="text-primary p-4 min-w-36 text-xl text-right hover:bg-primary hover:text-secondary"
@@ -168,18 +170,28 @@ export default function Home() {
         </div>
         <div className="w-full fixed bottom-0 h-24 z-10">
           <div
-            className="arrowouter h-16 w-16 ml-auto right-8 bottom-8 relative cursor-pointer transform translate-y-0 hover:translate-y-2 transition-transform"
-            onClick={() =>
-              window.scroll({
-                top:
-                  Math.floor(
-                    (window.scrollY + window.innerHeight + 100) /
-                      window.innerHeight
-                  ) * window.innerHeight,
-                left: 0,
-                behavior: "smooth",
-              })
-            }
+            className={`arrowouter h-16 w-16 ml-auto right-8 bottom-8 relative cursor-pointer transform translate-y-0 hover:translate-y-2 transition-transform ${
+              visibleIdx === MAX_SCROLL_IDX ? "rotate-180" : "rotate-0"
+            }`}
+            onClick={() => {
+              if (visibleIdx === MAX_SCROLL_IDX) {
+                window.scroll({
+                  top: 0,
+                  left: 0,
+                  behavior: "smooth",
+                });
+              } else {
+                window.scroll({
+                  top:
+                    Math.floor(
+                      (window.scrollY + window.innerHeight + 100) /
+                        window.innerHeight
+                    ) * window.innerHeight,
+                  left: 0,
+                  behavior: "smooth",
+                });
+              }
+            }}
           >
             <SquigglyBoyo />
           </div>
@@ -204,7 +216,7 @@ export default function Home() {
           className={`w-[80vw] max-w-xl h-screen relative text-primary flex flex-wrap justify-start items-between p-8 md:p-16`}
         >
           <h1
-            className={`font-basteleur text-[9rem] md:text-[12rem] leading-[0.75] drop-shadow-intro transition-all duration-300 ${
+            className={`font-basteleur text-[6rem] md:text-[12rem] leading-[0.75] drop-shadow-intro transition-all duration-300 ${
               idx === visibleIdx
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 -translate-y-4"
