@@ -24,13 +24,16 @@ export const ShaderCanvas: FC<ShaderCanvasProps> = (props): JSX.Element => {
     canvas.style.height = container.clientHeight + "px";
   };
 
+  // deep comparison for the use effect
+  const stringified = JSON.stringify(props.setUniforms);
   useEffect(() => {
+    const uniforms = JSON.parse(stringified);
     if (sandboxRef && sandboxRef.current) {
-      for (let k in props.setUniforms) {
-        sandboxRef.current.setUniform(k, props.setUniforms[k]);
+      for (let k in uniforms) {
+        sandboxRef.current.setUniform(k, uniforms[k]);
       }
     }
-  }, [JSON.stringify(props.setUniforms)]);
+  }, [stringified]);
 
   useEffect(() => {
     const node = canvasRef.current;
@@ -68,6 +71,8 @@ export const ShaderCanvas: FC<ShaderCanvasProps> = (props): JSX.Element => {
       window.removeEventListener("resize", handler);
       window.removeEventListener("scroll", scroll);
     };
+    // shhhhhhhhh
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
