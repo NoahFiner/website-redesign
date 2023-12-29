@@ -23,7 +23,7 @@ function ProjectCard({ project }: { project: Project }) {
           className="h-48 md:h-full w-auto"
         />
         <div className="flex-grow h-full flex flex-col justify-between items-start md:gap-0 gap-4">
-          <div className="flex w-full relative justify-between items-center">
+          <div className="flex w-full relative justify-between items-center flex-wrap">
             <p className="font-bold p-2 -m-2">{project.title}</p>
             <p>{project.date}</p>
           </div>

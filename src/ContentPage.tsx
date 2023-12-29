@@ -6,14 +6,16 @@ import { miniFrag, titleFrag } from "./frag/frag";
 
 export function ContentPage({
   titleFragUniforms,
+  selected,
   children,
 }: PropsWithChildren<{
+  selected?: "me" | "projects" | "pics";
   titleFragUniforms?: { [key: string]: string | number };
 }>) {
   console.log(titleFragUniforms);
   return (
-    <div className="bg-secondary">
-      <div className="w-screen h-96 border-bottom-primary relative p-8">
+    <div className="bg-secondary pb-12">
+      <div className="w-screen h-52 md:h-72 border-bottom-primary relative p-8">
         <div className="h-full flex relative right-0 justify-start flex-col items-end">
           <Link to="/">
             <div className="h-16 w-16 cursor-pointer">
@@ -21,17 +23,29 @@ export function ContentPage({
             </div>
           </Link>
           <Link to="/me">
-            <p className="text-primary p-2 min-w-24 text-right hover:bg-primary hover:text-secondary">
+            <p
+              className={`text-primary text-lg p-2 md:text-base min-w-24 text-right hover:bg-primary hover:text-secondary ${
+                selected === "me" ? "underline" : ""
+              }`}
+            >
               me
             </p>
           </Link>
           <Link to="/projects">
-            <p className="text-primary p-2 min-w-24 text-right hover:bg-primary hover:text-secondary">
+            <p
+              className={`text-primary text-lg p-2 md:text-base min-w-24 text-right hover:bg-primary hover:text-secondary ${
+                selected === "projects" ? "underline" : ""
+              }`}
+            >
               projs
             </p>
           </Link>
           <Link to="/pics">
-            <p className="text-primary p-2 min-w-24 text-right hover:bg-primary hover:text-secondary">
+            <p
+              className={`text-primary text-lg p-2 md:text-base min-w-24 text-right hover:bg-primary hover:text-secondary ${
+                selected === "pics" ? "underline" : ""
+              }`}
+            >
               pics
             </p>
           </Link>
@@ -41,7 +55,7 @@ export function ContentPage({
             <ShaderCanvas frag={miniFrag} />
           </div>
         </div>
-        <div className="h-[16rem] top-[4rem] w-[30rem] md:w-[47rem] -left-4 md:left-8 absolute">
+        <div className="h-[8rem] sm:h-[16rem] top-[7rem] sm:top-[4rem] w-[20rem] sm:w-[30rem] md:w-[47rem] -left-4 md:left-8 absolute pointer-events-none">
           <div className="w-full h-full relative">
             <ShaderCanvas frag={titleFrag} setUniforms={titleFragUniforms} />
           </div>

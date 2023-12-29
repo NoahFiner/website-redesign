@@ -31,6 +31,7 @@ function About() {
         image_size_x: 993,
         image_size_y: 254,
       }}
+      selected="me"
     >
       <AboutContent />
     </ContentPage>
@@ -45,6 +46,7 @@ function Projects() {
         image_size_x: 1211,
         image_size_y: 296,
       }}
+      selected="projects"
     >
       <ProjectsContent />
     </ContentPage>
@@ -59,6 +61,7 @@ function Pics() {
         image_size_x: 1029,
         image_size_y: 242,
       }}
+      selected="pics"
     >
       <p>Pics asdfasdf</p>
     </ContentPage>

@@ -314,11 +314,11 @@ void main(void)
     float dist = distance(vec2(mouse.x, mouse.y), v_texcoord);
 
     // -1 means first texture, 1 means second texture
-    float transitionAmt = smoothstep(0.1, 1.0, fract(u_scroll)) * 2.0 - 1.0;
+    float transitionAmt = smoothstep(-0.3, 1.0, fract(u_scroll)) * 2.0 - 1.0;
     
     float adjustedTime = u_time*0.05;
     
-    vec2 uv_fbm = (3. - 1.*v_texcoord);
+    vec2 uv_fbm = (3. - 2.*st);
     
     float noise = noise2d(sin(v_texcoord * u_time)*10000. + 300.)*1.0;
     

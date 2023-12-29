@@ -21,15 +21,17 @@ export default function Home() {
 
   const [visibleIdx, setVisibleIdx] = useState(0);
 
+  const height = document.documentElement.clientHeight;
+
   const onScroll = useCallback(() => {
     let scroll = window.scrollY;
-    if (scroll < window.innerHeight) scroll += 300;
-    let shouldShow = Math.floor((scroll + 50) / window.innerHeight) - 1;
+    if (scroll < height) scroll += 300;
+    let shouldShow = Math.floor((scroll + 50) / height) - 1;
 
     if (visibleIdx !== shouldShow) {
       setVisibleIdx(shouldShow);
     }
-  }, [visibleIdx, setVisibleIdx]);
+  }, [height, visibleIdx]);
 
   useEffect(() => {
     window.addEventListener("scroll", onScroll);
@@ -127,8 +129,8 @@ export default function Home() {
   ];
   return (
     <>
-      <div className="w-screen h-screen relative bg-secondary">
-        <div className="w-full h-full absolute">
+      <div className={`w-screen h-svh relative bg-secondary`}>
+        <div className="w-full h-svh absolute">
           <ShaderCanvas
             frag={frag}
             setUniforms={{
@@ -183,10 +185,8 @@ export default function Home() {
               } else {
                 window.scroll({
                   top:
-                    Math.floor(
-                      (window.scrollY + window.innerHeight + 100) /
-                        window.innerHeight
-                    ) * window.innerHeight,
+                    Math.floor((window.scrollY + height + 100) / height) *
+                    height,
                   left: 0,
                   behavior: "smooth",
                 });
@@ -198,7 +198,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-full h-full fixed -z-10 top-0">
+      <div className="w-full h-lvh fixed -z-10 top-0">
         <ShaderCanvas
           frag={introFrag}
           setUniforms={{
@@ -213,7 +213,7 @@ export default function Home() {
 
       {intros.map((intro, idx) => (
         <div
-          className={`w-[80vw] max-w-xl h-screen relative text-primary flex flex-wrap justify-start items-between p-8 md:p-16`}
+          className={`w-[80vw] max-w-xl h-lvh relative text-primary flex flex-wrap justify-start items-between p-8 md:p-16`}
         >
           <h1
             className={`font-basteleur text-[6rem] md:text-[12rem] leading-[0.75] drop-shadow-intro transition-all duration-300 ${
@@ -226,11 +226,11 @@ export default function Home() {
           </h1>
           <div
             className={`h-50 flex flex-wrap flex-col justify-end gap-8 [&>p]:drop-shadow-introbody font-bold
-                      [&>p]:text-xl [&>p]:transition-all [&>p]:duration-300 ${
-                        idx === visibleIdx
-                          ? "[&>p]:opacity-100 [&>p]:translate-y-0"
-                          : "[&>p]:opacity-0 [&>p]:-translate-y-4"
-                      }`}
+              [&>p]:text-lg [&>p]:md:text-xl [&>p]:transition-all [&>p]:duration-300 ${
+                idx === visibleIdx
+                  ? "[&>p]:opacity-100 [&>p]:translate-y-0"
+                  : "[&>p]:opacity-0 [&>p]:-translate-y-4"
+              }`}
           >
             {intro.content}
           </div>
