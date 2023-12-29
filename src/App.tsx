@@ -7,6 +7,7 @@ import AboutContent from "./About";
 import projectsHeader from "./img/headers/projects.png";
 import photosHeader from "./img/headers/photos.png";
 import itmeHeader from "./img/headers/itme.png";
+import ProjectsContent from "./Projects";
 
 function App() {
   return (
@@ -45,7 +46,7 @@ function Projects() {
         image_size_y: 296,
       }}
     >
-      <p>Projects asdfasdf</p>
+      <ProjectsContent />
     </ContentPage>
   );
 }
