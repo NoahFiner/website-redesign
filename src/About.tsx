@@ -4,7 +4,7 @@ export default function AboutContent() {
   return (
     <div className="w-screen min-h-screen relative flex md:flex-row flex-col justify-center item-center">
       <div className="w-full md:w-[30rem] h-auto flex items-center">
-        <div className="[&>p]:m-8 [&>p]:text-primary p-4 relative">
+        <div className="[&>p]:my-8 [&>p]:mx-4 [&>p]:text-primary p-4 relative">
           <p className="font-bold">yeah you heard it</p>
           <p>i’m noah finer, i work at figma and live in san francisco</p>
           <p>that is a picture of me (nice)</p>

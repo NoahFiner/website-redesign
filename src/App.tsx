@@ -8,6 +8,7 @@ import projectsHeader from "./img/headers/projects.png";
 import photosHeader from "./img/headers/photos.png";
 import itmeHeader from "./img/headers/itme.png";
 import ProjectsContent from "./Projects";
+import PicsContent from "./Pics";
 
 function App() {
   return (
@@ -63,7 +64,7 @@ function Pics() {
       }}
       selected="pics"
     >
-      <p>Pics asdfasdf</p>
+      <PicsContent />
     </ContentPage>
   );
 }

@@ -4,7 +4,7 @@ import chime from "./img/projects/chime.png";
 import rollout from "./img/projects/rollout.png";
 // import socialmedai from "./img/projects/socialmedai.png";
 import multitaskilus from "./img/projects/multitaskilus.png";
-import honestlyy from "./img/projects/honestlyy.png";
+// import honestlyy from "./img/projects/honestlyy.png";
 import sqar from "./img/projects/sqar.png";
 import sqr from "./img/projects/sqr.png";
 import odyssey from "./img/projects/odyssey.png";
