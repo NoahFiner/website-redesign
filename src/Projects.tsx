@@ -76,7 +76,7 @@ export default function ProjectsContent() {
               <ProjectCard project={project} key={project.title} />
             ))}
           </div>
-          <div className="mt-[100vh] mb-16">
+          <div className="mt-[100vh] mb-16 [&>p]:my-4">
             <h1 className="font-basteleur text-6xl md:text-8xl">
               the secret section
             </h1>
@@ -84,14 +84,39 @@ export default function ProjectsContent() {
               good job? you scrolled an entire {window.innerHeight}px of
               literally no content.
             </p>
-            <p>as a reward, you found an easter egg</p>
+            <p>as a reward, you found an easter egg! here is content.</p>
             <a
               href="https://42069.noahfiner.com"
               target="_blank"
               rel="noreferrer"
-              className="text-primary hover:bg-primary hover:text-secondary p-4 -ml-4 underline"
+              className="text-primary inline-block hover:bg-primary hover:text-secondary p-4 -ml-4 m-4 underline"
             >
               "42069" by me. circa 2017
+            </a>
+          </div>
+          <div className="mt-[100vh] mb-16 [&>p]:my-4">
+            <h1 className="font-basteleur text-6xl md:text-8xl">
+              the secret secret section?
+            </h1>
+            <p>jeez you are insane. but there's nothing here</p>
+          </div>
+          <div className="mt-[1000vh] mb-[300vh] [&>p]:my-4">
+            <h1 className="font-basteleur text-6xl md:text-8xl">
+              why are you here?
+            </h1>
+            <p>you just scrolled {window.innerHeight * 11}px, nice job?</p>
+            <p>you deserve a big reward this time.</p>
+            <p>
+              here is my first website, unearthed from the deep archives. click
+              at your own risk.
+            </p>
+            <a
+              href="https://fastidious-basbousa-21c4c7.netlify.app/homepage.html"
+              target="_blank"
+              rel="noreferrer"
+              className="text-primary inline-block hover:bg-primary hover:text-secondary p-4 -ml-4 m-4 underline"
+            >
+              "NoahsCoolWebsite" by me. circa 2014
             </a>
           </div>
         </div>

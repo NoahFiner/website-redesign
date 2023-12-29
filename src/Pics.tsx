@@ -1,6 +1,7 @@
 import meinwild from "./img/meinthewild.jpg";
 import landscape from "./img/landscape.jpg";
 import professional from "./img/professional.jpg";
+import spiky2 from "./img/spiky2.jpg";
 
 export default function PicsContent() {
   return (
@@ -40,12 +41,28 @@ export default function PicsContent() {
         >
           <img
             className="w-72 h-auto m-auto transform transition-transform origin-center scale-100 group-hover:scale-105"
-            alt="mountains"
+            alt="handsome dude"
             src={professional}
           />
           <div className="w-48 h-24 absolute top-3 -left-8 md:bottom-3 md:-right-8 bg-primary transform translate-x-0 translate-y-0 transition-transform group-hover:-translate-x-2 group-hover:translate-y-2"></div>
           <div className="w-48 h-24 absolute top-3 -left-8 md:bottom-3 md:-right-8 p-4 flex justify-center items-center bg-secondary border-2 border-primary transform translate-x-0 translate-y-0 transition-transform group-hover:translate-x-2 group-hover:-translate-y-2">
             <p>portraits & professional at finer.photo</p>
+          </div>
+        </a>
+        <a
+          href="https://instagram.com/spiky1and2"
+          target="_blank"
+          className="group relative w-72"
+          rel="noreferrer"
+        >
+          <img
+            className="w-72 h-auto m-auto transform transition-transform origin-center scale-100 group-hover:scale-105"
+            alt="spiky2 with flower"
+            src={spiky2}
+          />
+          <div className="w-48 h-24 absolute top-3 -left-8 md:bottom-3 md:-right-8 bg-primary transform translate-x-0 translate-y-0 transition-transform group-hover:-translate-x-2 group-hover:translate-y-2"></div>
+          <div className="w-48 h-24 absolute top-3 -left-8 md:bottom-3 md:-right-8 p-4 flex justify-center items-center bg-secondary border-2 border-primary transform translate-x-0 translate-y-0 transition-transform group-hover:translate-x-2 group-hover:-translate-y-2">
+            <p>lizards at @spiky1and2</p>
           </div>
         </a>
       </div>
