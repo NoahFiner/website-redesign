@@ -20,11 +20,16 @@ module.exports = {
       },
       animation: {
         wiggle: "wiggle 2s ease-in-out infinite",
+        spinfast: "spinfast 12s cubic-bezier(.01,1.01,.61,1.01)",
       },
       keyframes: {
         wiggle: {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(12px)" },
+        },
+        spinfast: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(1800deg)" },
         },
       },
     },

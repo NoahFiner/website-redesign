@@ -67,6 +67,7 @@ export const ShaderCanvas: FC<ShaderCanvasProps> = (props): JSX.Element => {
       sandbox.setUniform("u_scroll", window.scrollY / window.innerHeight);
     };
     scroll();
+    handler();
 
     window.addEventListener("resize", handler);
     window.addEventListener("scroll", scroll);

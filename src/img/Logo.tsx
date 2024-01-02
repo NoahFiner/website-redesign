@@ -17,7 +17,7 @@ export default function LogoRotating({ width }: { width: number }) {
       <path
         d="M171.404 109.13C148.968 109.13 130.792 91.664 130.792 67.808C130.792 45.088 148.968 26.77 171.404 26.77C193.698 26.77 212.016 44.094 212.016 67.808C212.016 90.67 193.698 109.13 171.404 109.13ZM183.758 101.178C196.254 96.918 201.65 78.6 194.266 59.146C187.024 40.118 170.978 30.746 158.766 34.864C146.412 39.266 141.158 57.3 148.4 76.47C155.784 95.782 171.688 105.438 183.758 101.178Z"
         fill="#C9D4C6"
-        className="group-hover:fill-secondary animate-spin animate-duration-[3s] origin-center [transform-box:fill-box]"
+        className="group-hover:fill-secondary animate-spinfast origin-center [transform-box:fill-box]"
       />
       <path
         className="group-hover:fill-secondary"

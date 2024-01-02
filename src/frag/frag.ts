@@ -327,48 +327,45 @@ void main(void)
     // TODO @nfiner maybe i can make this faster by doing the texture2D within those if statements?
     
     
-    // vec2 image1_uv = get_image_uv(image1_size);
-    // vec2 image2_uv = get_image_uv(image2_size);
-    // vec2 image3_uv = get_image_uv(image3_size);
-    // vec2 image4_uv = get_image_uv(image4_size);
+    vec2 image1_uv = get_image_uv(image1_size);
+    vec2 image2_uv = get_image_uv(image2_size);
+    vec2 image3_uv = get_image_uv(image3_size);
+    vec2 image4_uv = get_image_uv(image4_size);
+
+    vec4 image1 = texture2D(texture1, image1_uv);
+    vec4 image2 = texture2D(texture2, image2_uv);
+    vec4 image3 = texture2D(texture3, image3_uv);
+    vec4 image4 = texture2D(texture4, image4_uv);
     
     vec4 first_image = vec4(0.0, 0.0, 0.0, 1.0);
     vec4 second_image = vec4(0.0, 0.0, 0.0, 1.0);
 
     if(u_scroll <= 1.0) {
-        vec2 image1_uv = get_image_uv(image1_size);
-        second_image = texture2D(texture1, image1_uv);
+        second_image = image1;
     }
     if(u_scroll >= 1.0 && u_scroll <= 2.0) {
-        vec2 image1_uv = get_image_uv(image1_size);
-        vec2 image2_uv = get_image_uv(image2_size);
 
-        first_image = texture2D(texture1, image1_uv);
-        second_image = texture2D(texture2, image2_uv);    
+        first_image = image1;
+        second_image = image2;    
     }
     if(u_scroll >= 2.0 && u_scroll <= 3.0) {
-        vec2 image2_uv = get_image_uv(image2_size);
-        vec2 image3_uv = get_image_uv(image3_size);
 
-        first_image = texture2D(texture2, image2_uv);
-        second_image = texture2D(texture3, image3_uv);
+        first_image = image2;
+        second_image = image3;
     }
     if(u_scroll >= 3.0 && u_scroll <= 4.0) {
-        vec2 image3_uv = get_image_uv(image3_size);
-        vec2 image4_uv = get_image_uv(image4_size);
 
-        first_image = texture2D(texture3, image3_uv);
-        second_image = texture2D(texture4, image4_uv);
+        first_image = image3;
+        second_image = image4;
     }
     if(u_scroll >= 4.0 && u_scroll <= 5.0) {
-        vec2 image4_uv = get_image_uv(image4_size);
 
-        first_image = texture2D(texture4, image4_uv);
-        second_image = texture2D(texture4, image4_uv);
+        first_image = image4;
+        second_image = image4;
     }
 //    if(scroll >= 3.5) {
-//        first_image = texture2D(texture3, image3_uv);
-//        second_image = texture2D(texture3, image3_uv);
+//        first_image = image3;
+//        second_image = image3;
 //    }
     
     
