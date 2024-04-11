@@ -21,6 +21,7 @@ module.exports = {
       animation: {
         wiggle: "wiggle 2s ease-in-out infinite",
         spinfast: "spinfast 12s cubic-bezier(.01,1.01,.61,1.01)",
+        spinfastloading: "spinfastloading 4s cubic-bezier(0,.58,.41,.99) infinite",
       },
       keyframes: {
         wiggle: {
@@ -30,6 +31,13 @@ module.exports = {
         spinfast: {
           "0%": { transform: "rotate(0deg)" },
           "100%": { transform: "rotate(1800deg)" },
+        },
+        spinfastloading: {
+          "0%": { opacity: "0", transform: "rotate(0deg) scale(1)" },
+          "15%": { opacity: "0", transform: "rotate(0deg) scale(1)" },
+          "20%": { opacity: "1", transform: "rotate(0deg) scale(1)" },
+          "90%": { opacity: "1", transform: "rotate(1800deg) scale(0.5)" },
+          "100%": { opacity: "0", transform: "rotate(1800deg) scale(0.5)" },
         },
       },
     },

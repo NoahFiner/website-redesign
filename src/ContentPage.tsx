@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from "react";
 import { Link } from "react-router-dom";
 import { ShaderCanvas } from "./ShaderCanvas";
-import LogoRotating from "./img/Logo";
+import { LogoRotating } from "./img/Logo";
 import { miniFrag, titleFrag } from "./frag/frag";
 
 export function ContentPage({

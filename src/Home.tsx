@@ -8,6 +8,57 @@ import moraine from "./img/intro/moraine.jpg";
 import yosemite from "./img/intro/yosemite.jpg";
 import lizards from "./img/intro/lizards.jpg";
 import SquigglyBoyo from "./img/Squiggle";
+import { LogoLoading } from "./img/Logo";
+
+const IMAGE_URLS: string[] = [logo, bridge, moraine, yosemite, lizards];
+
+function preloadImage(src: string) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = function () {
+      resolve(img);
+    };
+    img.onerror = img.onabort = function () {
+      reject(src);
+    };
+    img.src = src;
+  });
+}
+
+export function useImagePreloader(imageList: string[]) {
+  const [imagesPreloaded, setImagesPreloaded] = useState<boolean>(false);
+
+  useEffect(() => {
+    let isCancelled = false;
+
+    async function effect() {
+      if (isCancelled) {
+        return;
+      }
+
+      const imagesPromiseList: Promise<any>[] = [];
+      for (const i of imageList) {
+        imagesPromiseList.push(preloadImage(i));
+      }
+
+      await Promise.all(imagesPromiseList);
+
+      if (isCancelled) {
+        return;
+      }
+
+      setImagesPreloaded(true);
+    }
+
+    effect();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [imageList]);
+
+  return { imagesPreloaded };
+}
 
 type IntroContent = {
   title: string;
@@ -20,6 +71,10 @@ export default function Home() {
   const [effect, setEffect] = useState(0);
 
   const [visibleIdx, setVisibleIdx] = useState(0);
+
+  const { imagesPreloaded } = useImagePreloader(IMAGE_URLS);
+
+  console.log(imagesPreloaded);
 
   const height = document.documentElement.clientHeight;
 
@@ -51,7 +106,7 @@ export default function Home() {
   const makeTitleCool = (title: string): React.ReactElement => {
     if (!title.length) return <></>;
     return (
-      <div>
+      <div key={title + "-title"}>
         {title.split("").map((a, idx) => {
           if (a === "*") {
             return <br />;
@@ -129,7 +184,11 @@ export default function Home() {
   ];
   return (
     <>
-      <div className={`w-screen h-svh relative bg-secondary`}>
+      <div
+        className={`w-screen h-svh relative bg-secondary transition-opacity ${
+          !imagesPreloaded ? "opacity-0" : "opacity-100"
+        }`}
+      >
         <div className="w-full h-svh absolute">
           <ShaderCanvas
             frag={frag}
@@ -236,6 +295,11 @@ export default function Home() {
           </div>
         </div>
       ))}
+      <div
+        className={` fixed w-full h-full top-0 -z-50 flex justify-center items-center`}
+      >
+        <LogoLoading width={100} />
+      </div>
     </>
   );
 }
