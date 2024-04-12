@@ -35,7 +35,7 @@ module.exports = {
         spinfastloading: {
           "0%": { opacity: "0", transform: "rotate(0deg) scale(1)" },
           "15%": { opacity: "0", transform: "rotate(0deg) scale(1)" },
-          "20%": { opacity: "1", transform: "rotate(0deg) scale(1)" },
+          "20%": { opacity: "1", transform: "rotate(400deg) scale(1)" },
           "90%": { opacity: "1", transform: "rotate(1800deg) scale(0.5)" },
           "100%": { opacity: "0", transform: "rotate(1800deg) scale(0.5)" },
         },

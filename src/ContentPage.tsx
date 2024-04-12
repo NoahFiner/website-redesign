@@ -8,11 +8,12 @@ export function ContentPage({
   titleFragUniforms,
   selected,
   children,
+  loaded
 }: PropsWithChildren<{
   selected?: "me" | "projects" | "pics";
   titleFragUniforms?: { [key: string]: string | number };
+  loaded: boolean
 }>) {
-  console.log(titleFragUniforms);
   return (
     <div className="bg-secondary pb-12">
       <div className="w-screen h-52 md:h-72 border-bottom-primary relative p-8">
@@ -55,7 +56,8 @@ export function ContentPage({
             <ShaderCanvas frag={miniFrag} />
           </div>
         </div>
-        <div className="h-[8rem] sm:h-[16rem] top-[7rem] sm:top-[4rem] w-[20rem] sm:w-[30rem] md:w-[47rem] -left-4 md:left-8 absolute pointer-events-none">
+        <div className={`h-[8rem] sm:h-[16rem] top-[7rem] sm:top-[4rem] w-[20rem] sm:w-[30rem] md:w-[47rem] -left-4 md:left-8 absolute pointer-events-none
+                        ${loaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-250`}>
           <div className="w-full h-full relative">
             <ShaderCanvas frag={titleFrag} setUniforms={titleFragUniforms} />
           </div>
