@@ -9,6 +9,7 @@ import photosHeader from "./img/headers/photos.png";
 import itmeHeader from "./img/headers/itme.png";
 import ProjectsContent from "./Projects";
 import PicsContent from "./Pics";
+import { useImagePreloader } from "./preloadImages";
 
 function App() {
   return (
@@ -25,8 +26,10 @@ function App() {
 }
 
 function About() {
+  const {imagesPreloaded} = useImagePreloader([itmeHeader]);
   return (
     <ContentPage
+      loaded={imagesPreloaded}
       titleFragUniforms={{
         texture0: itmeHeader,
         image_size_x: 993,
@@ -40,8 +43,10 @@ function About() {
 }
 
 function Projects() {
+  const {imagesPreloaded} = useImagePreloader([projectsHeader]);
   return (
     <ContentPage
+      loaded={imagesPreloaded}
       titleFragUniforms={{
         texture0: projectsHeader,
         image_size_x: 1211,
@@ -55,8 +60,10 @@ function Projects() {
 }
 
 function Pics() {
+  const {imagesPreloaded} = useImagePreloader([photosHeader]);
   return (
     <ContentPage
+      loaded={imagesPreloaded}
       titleFragUniforms={{
         texture0: photosHeader,
         image_size_x: 1029,
@@ -71,7 +78,7 @@ function Pics() {
 
 function NotFound() {
   return (
-    <ContentPage>
+    <ContentPage loaded={true}>
       <h2>not found</h2>
     </ContentPage>
   );
