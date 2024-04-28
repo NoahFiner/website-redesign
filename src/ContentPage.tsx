@@ -16,7 +16,6 @@ export function ContentPage({
   titleTexture?: string;
 }>) {
   const { imagesPreloaded } = useImagePreloader([titleTexture]);
-  console.log(imagesPreloaded);
   return (
     <div className="bg-secondary pb-12">
       <div className="w-screen h-52 md:h-72 border-bottom-primary relative p-8">

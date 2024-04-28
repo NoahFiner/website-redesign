@@ -118,7 +118,7 @@ export default function Home() {
           <p className="delay-200">
             these photos are generally of rocks, trees, and sometimes people if
             they want that.&nbsp;
-            <Link to="/projects">
+            <Link to="/pics">
               <span className="underline hover:bg-primary hover:text-secondary hover:no-underline">
                 take a gander here.
               </span>
