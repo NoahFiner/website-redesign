@@ -27,8 +27,8 @@ function App() {
 function About() {
   return (
     <ContentPage
+      titleTexture={itmeHeader}
       titleFragUniforms={{
-        texture0: itmeHeader,
         image_size_x: 993,
         image_size_y: 254,
       }}
@@ -42,8 +42,8 @@ function About() {
 function Projects() {
   return (
     <ContentPage
+      titleTexture={projectsHeader}
       titleFragUniforms={{
-        texture0: projectsHeader,
         image_size_x: 1211,
         image_size_y: 296,
       }}
@@ -57,8 +57,8 @@ function Projects() {
 function Pics() {
   return (
     <ContentPage
+      titleTexture={photosHeader}
       titleFragUniforms={{
-        texture0: photosHeader,
         image_size_x: 1029,
         image_size_y: 242,
       }}

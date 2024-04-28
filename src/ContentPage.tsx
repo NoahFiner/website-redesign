@@ -3,16 +3,20 @@ import { Link } from "react-router-dom";
 import { ShaderCanvas } from "./ShaderCanvas";
 import { LogoRotating } from "./img/Logo";
 import { miniFrag, titleFrag } from "./frag/frag";
+import { useImagePreloader } from "./preload";
 
 export function ContentPage({
   titleFragUniforms,
   selected,
   children,
+  titleTexture = "",
 }: PropsWithChildren<{
   selected?: "me" | "projects" | "pics";
   titleFragUniforms?: { [key: string]: string | number };
+  titleTexture?: string;
 }>) {
-  console.log(titleFragUniforms);
+  const { imagesPreloaded } = useImagePreloader([titleTexture]);
+  console.log(imagesPreloaded);
   return (
     <div className="bg-secondary pb-12">
       <div className="w-screen h-52 md:h-72 border-bottom-primary relative p-8">
@@ -55,9 +59,16 @@ export function ContentPage({
             <ShaderCanvas frag={miniFrag} />
           </div>
         </div>
-        <div className="h-[8rem] sm:h-[16rem] top-[7rem] sm:top-[4rem] w-[20rem] sm:w-[30rem] md:w-[47rem] -left-4 md:left-8 absolute pointer-events-none">
+        <div
+          className={`h-[8rem] sm:h-[16rem] top-[7rem] sm:top-[4rem] w-[20rem] sm:w-[30rem] md:w-[47rem] -left-4 md:left-8 absolute pointer-events-none transition-opacity duration-500 ${
+            imagesPreloaded ? "opacity-100" : "opacity-0"
+          }`}
+        >
           <div className="w-full h-full relative">
-            <ShaderCanvas frag={titleFrag} setUniforms={titleFragUniforms} />
+            <ShaderCanvas
+              frag={titleFrag}
+              setUniforms={{ ...titleFragUniforms, texture0: titleTexture }}
+            />
           </div>
         </div>
       </div>

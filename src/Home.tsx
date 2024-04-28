@@ -9,56 +9,9 @@ import yosemite from "./img/intro/yosemite.jpg";
 import lizards from "./img/intro/lizards.jpg";
 import SquigglyBoyo from "./img/Squiggle";
 import { LogoLoading } from "./img/Logo";
+import { useImagePreloader } from "./preload";
 
 const IMAGE_URLS: string[] = [logo, bridge, moraine, yosemite, lizards];
-
-function preloadImage(src: string) {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.onload = function () {
-      resolve(img);
-    };
-    img.onerror = img.onabort = function () {
-      reject(src);
-    };
-    img.src = src;
-  });
-}
-
-export function useImagePreloader(imageList: string[]) {
-  const [imagesPreloaded, setImagesPreloaded] = useState<boolean>(false);
-
-  useEffect(() => {
-    let isCancelled = false;
-
-    async function effect() {
-      if (isCancelled) {
-        return;
-      }
-
-      const imagesPromiseList: Promise<any>[] = [];
-      for (const i of imageList) {
-        imagesPromiseList.push(preloadImage(i));
-      }
-
-      await Promise.all(imagesPromiseList);
-
-      if (isCancelled) {
-        return;
-      }
-
-      setImagesPreloaded(true);
-    }
-
-    effect();
-
-    return () => {
-      isCancelled = true;
-    };
-  }, [imageList]);
-
-  return { imagesPreloaded };
-}
 
 type IntroContent = {
   title: string;
@@ -73,8 +26,6 @@ export default function Home() {
   const [visibleIdx, setVisibleIdx] = useState(0);
 
   const { imagesPreloaded } = useImagePreloader(IMAGE_URLS);
-
-  console.log(imagesPreloaded);
 
   const height = document.documentElement.clientHeight;
 
@@ -146,7 +97,12 @@ export default function Home() {
           </p>
           <p className="delay-200">
             i also published some heat on spotify, anonymously ran a viral meme
-            page, and co-directed a creator space
+            page, and co-directed a creator space.&nbsp;
+            <Link to="/projects">
+              <span className="underline hover:bg-primary hover:text-secondary hover:no-underline">
+                see em all here.
+              </span>
+            </Link>
           </p>
         </>
       ),
@@ -161,7 +117,12 @@ export default function Home() {
           </p>
           <p className="delay-200">
             these photos are generally of rocks, trees, and sometimes people if
-            they want that.
+            they want that.&nbsp;
+            <Link to="/projects">
+              <span className="underline hover:bg-primary hover:text-secondary hover:no-underline">
+                take a gander here.
+              </span>
+            </Link>
           </p>
         </>
       ),
@@ -185,116 +146,118 @@ export default function Home() {
   return (
     <>
       <div
-        className={`w-screen h-svh relative bg-secondary transition-opacity ${
+        className={`transition-opacity ${
           !imagesPreloaded ? "opacity-0" : "opacity-100"
         }`}
       >
-        <div className="w-full h-svh absolute">
+        <div className={`w-screen h-svh relative bg-secondary`}>
+          <div className="w-full h-svh absolute">
+            <ShaderCanvas
+              frag={frag}
+              setUniforms={{
+                u_textureX: 923.1,
+                u_textureY: 934.1,
+                texture0: logo,
+                u_effectType: effect,
+              }}
+            ></ShaderCanvas>
+          </div>
+          <div className="w-full h-full flex relative flex-col justify-center items-end md:px-12 p-4">
+            <Link to="/me">
+              <p
+                className="text-primary p-4 min-w-36 text-xl text-right hover:bg-primary hover:text-secondary"
+                onMouseEnter={() => setEffect(1)}
+                onMouseLeave={() => setEffect(0)}
+              >
+                me
+              </p>
+            </Link>
+            <Link to="/projects">
+              <p
+                className="text-primary p-4 min-w-36 text-xl text-right hover:bg-primary hover:text-secondary"
+                onMouseEnter={() => setEffect(2)}
+                onMouseLeave={() => setEffect(0)}
+              >
+                projs
+              </p>
+            </Link>
+            <Link to="/pics">
+              <p
+                className="text-primary p-4 min-w-36 text-xl text-right hover:bg-primary hover:text-secondary"
+                onMouseEnter={() => setEffect(3)}
+                onMouseLeave={() => setEffect(0)}
+              >
+                pics
+              </p>
+            </Link>
+          </div>
+          <div className="w-full fixed bottom-0 h-24 z-10">
+            <div
+              className={`arrowouter h-16 w-16 ml-auto right-8 bottom-8 relative cursor-pointer transform translate-y-0 hover:translate-y-2 transition-transform ${
+                visibleIdx === MAX_SCROLL_IDX ? "rotate-180" : "rotate-0"
+              }`}
+              onClick={() => {
+                if (visibleIdx === MAX_SCROLL_IDX) {
+                  window.scroll({
+                    top: 0,
+                    left: 0,
+                    behavior: "smooth",
+                  });
+                } else {
+                  window.scroll({
+                    top:
+                      Math.floor((window.scrollY + height + 100) / height) *
+                      height,
+                    left: 0,
+                    behavior: "smooth",
+                  });
+                }
+              }}
+            >
+              <SquigglyBoyo />
+            </div>
+          </div>
+        </div>
+
+        <div className="w-full h-lvh fixed -z-10 top-0">
           <ShaderCanvas
-            frag={frag}
+            frag={introFrag}
             setUniforms={{
-              u_textureX: 923.1,
-              u_textureY: 934.1,
-              texture0: logo,
+              texture1: bridge,
+              texture2: yosemite,
+              texture3: moraine,
+              texture4: lizards,
               u_effectType: effect,
             }}
           ></ShaderCanvas>
         </div>
-        <div className="w-full h-full flex relative flex-col justify-center items-end md:px-12 p-4">
-          <Link to="/me">
-            <p
-              className="text-primary p-4 min-w-36 text-xl text-right hover:bg-primary hover:text-secondary"
-              onMouseEnter={() => setEffect(1)}
-              onMouseLeave={() => setEffect(0)}
-            >
-              me
-            </p>
-          </Link>
-          <Link to="/projects">
-            <p
-              className="text-primary p-4 min-w-36 text-xl text-right hover:bg-primary hover:text-secondary"
-              onMouseEnter={() => setEffect(2)}
-              onMouseLeave={() => setEffect(0)}
-            >
-              projs
-            </p>
-          </Link>
-          <Link to="/pics">
-            <p
-              className="text-primary p-4 min-w-36 text-xl text-right hover:bg-primary hover:text-secondary"
-              onMouseEnter={() => setEffect(3)}
-              onMouseLeave={() => setEffect(0)}
-            >
-              pics
-            </p>
-          </Link>
-        </div>
-        <div className="w-full fixed bottom-0 h-24 z-10">
-          <div
-            className={`arrowouter h-16 w-16 ml-auto right-8 bottom-8 relative cursor-pointer transform translate-y-0 hover:translate-y-2 transition-transform ${
-              visibleIdx === MAX_SCROLL_IDX ? "rotate-180" : "rotate-0"
-            }`}
-            onClick={() => {
-              if (visibleIdx === MAX_SCROLL_IDX) {
-                window.scroll({
-                  top: 0,
-                  left: 0,
-                  behavior: "smooth",
-                });
-              } else {
-                window.scroll({
-                  top:
-                    Math.floor((window.scrollY + height + 100) / height) *
-                    height,
-                  left: 0,
-                  behavior: "smooth",
-                });
-              }
-            }}
-          >
-            <SquigglyBoyo />
-          </div>
-        </div>
-      </div>
 
-      <div className="w-full h-lvh fixed -z-10 top-0">
-        <ShaderCanvas
-          frag={introFrag}
-          setUniforms={{
-            texture1: bridge,
-            texture2: yosemite,
-            texture3: moraine,
-            texture4: lizards,
-            u_effectType: effect,
-          }}
-        ></ShaderCanvas>
-      </div>
-
-      {intros.map((intro, idx) => (
-        <div
-          className={`w-[80vw] max-w-xl h-lvh relative text-primary flex flex-wrap justify-start items-between p-8 md:p-16`}
-        >
-          <h1
-            className={`font-basteleur text-[6rem] md:text-[12rem] leading-[0.75] drop-shadow-intro transition-all duration-300 ${
-              idx === visibleIdx
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 -translate-y-4"
-            }`}
-          >
-            {makeTitleCool(intro.title)}
-          </h1>
+        {intros.map((intro, idx) => (
           <div
-            className={`h-50 flex flex-wrap flex-col justify-end gap-8 [&>p]:drop-shadow-introbody font-bold
+            className={`w-[80vw] max-w-xl h-lvh relative text-primary flex flex-wrap justify-start items-between p-8 md:p-16`}
+          >
+            <h1
+              className={`font-basteleur text-[6rem] md:text-[12rem] leading-[0.75] drop-shadow-intro transition-all duration-300 ${
+                idx === visibleIdx
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 -translate-y-4"
+              }`}
+            >
+              {makeTitleCool(intro.title)}
+            </h1>
+            <div
+              className={`h-50 flex flex-wrap flex-col justify-end gap-8 [&>p]:drop-shadow-introbody font-bold
               [&>p]:text-lg [&>p]:md:text-xl [&>p]:transition-all [&>p]:duration-300 ${
                 idx === visibleIdx
                   ? "[&>p]:opacity-100 [&>p]:translate-y-0"
                   : "[&>p]:opacity-0 [&>p]:-translate-y-4"
               }`}
-          >
-            {intro.content}
+            >
+              {intro.content}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
       <div
         className={` fixed w-full h-full top-0 -z-50 flex justify-center items-center`}
       >
