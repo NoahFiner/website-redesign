@@ -162,10 +162,10 @@ export default function Home() {
               }}
             ></ShaderCanvas>
           </div>
-          <div className="w-full h-full flex relative flex-col justify-center items-end md:px-12 p-4">
+          <div className="w-full h-full flex fixed flex-col justify-center items-end md:px-12 p-4">
             <Link to="/me">
               <p
-                className="text-primary p-4 min-w-36 text-xl text-right hover:bg-primary hover:text-secondary"
+                className="text-primary p-4 min-w-36 text-xl text-right drop-shadow-introbody hover:drop-shadow-none hover:bg-primary hover:text-secondary"
                 onMouseEnter={() => setEffect(1)}
                 onMouseLeave={() => setEffect(0)}
               >
@@ -174,7 +174,7 @@ export default function Home() {
             </Link>
             <Link to="/projects">
               <p
-                className="text-primary p-4 min-w-36 text-xl text-right hover:bg-primary hover:text-secondary"
+                className="text-primary p-4 min-w-36 text-xl text-right drop-shadow-introbody hover:drop-shadow-none hover:bg-primary hover:text-secondary"
                 onMouseEnter={() => setEffect(2)}
                 onMouseLeave={() => setEffect(0)}
               >
@@ -183,7 +183,7 @@ export default function Home() {
             </Link>
             <Link to="/pics">
               <p
-                className="text-primary p-4 min-w-36 text-xl text-right hover:bg-primary hover:text-secondary"
+                className="text-primary p-4 min-w-36 text-xl text-right drop-shadow-introbody hover:drop-shadow-none hover:bg-primary hover:text-secondary"
                 onMouseEnter={() => setEffect(3)}
                 onMouseLeave={() => setEffect(0)}
               >

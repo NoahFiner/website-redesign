@@ -15,6 +15,7 @@ import affirm from "./img/projects/affirm.png";
 import whoaffirm from "./img/projects/whoaffirm.png";
 import shift from "./img/projects/shift.jpg";
 import finerflame from "./img/projects/finerflame.jpg";
+import riprimaz from "./img/projects/riprimaz.jpg";
 
 export type Project = {
   title: string;
@@ -69,6 +70,14 @@ export const CODE_PROJECTS: Project[] = [
 ];
 
 export const NON_CODE_PROJECTS: Project[] = [
+  {
+    title: "who killed rimaz?",
+    date: "2024",
+    imgSrc: riprimaz,
+    content:
+      "hosted an insane murder mystery party with friends by renting a venue, writing four puzzles, coding a detective dashboard w/ live voting, and buying $100 of dippin' dots",
+    href: "https://partiful.com/e/LbdrKbsjnmRsQ39nwqds",
+  },
   {
     title: "@umichaffirmations",
     date: "2021 & 22",
