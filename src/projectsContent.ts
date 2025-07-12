@@ -16,6 +16,7 @@ import whoaffirm from "./img/projects/whoaffirm.png";
 import shift from "./img/projects/shift.jpg";
 import finerflame from "./img/projects/finerflame.jpg";
 import riprimaz from "./img/projects/riprimaz.jpg";
+import sftransit from "./img/projects/sftransit.png";
 
 export type Project = {
   title: string;
@@ -70,6 +71,14 @@ export const CODE_PROJECTS: Project[] = [
 ];
 
 export const NON_CODE_PROJECTS: Project[] = [
+  {
+    title: "sftransit.fun",
+    date: "2025",
+    imgSrc: sftransit,
+    content:
+      "anonymously launched fun train quiz by purchasing bart ads. made 50+ assets in figma draw and animated them in react. got front page of r/sanfrancisco + r/bart and interviewed by sfgate and sfstandard. 30k+ responses.",
+    href: "https://www.sfgate.com/local/article/bart-station-ad-san-francisco-transit-test-20766361.php",
+  },
   {
     title: "who killed rimaz?",
     date: "2024",
