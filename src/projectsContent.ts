@@ -77,7 +77,7 @@ export const NON_CODE_PROJECTS: Project[] = [
     imgSrc: sftransit,
     content:
       "anonymously launched fun train quiz by purchasing bart ads. made 50+ assets in figma draw and animated them in react. got front page of r/sanfrancisco + r/bart and interviewed by sfgate and sfstandard. 30k+ responses.",
-    href: "https://www.sfgate.com/local/article/bart-station-ad-san-francisco-transit-test-20766361.php",
+    href: "https://sfstandard.com/2025/07/13/muni-bart-line-quiz-personality/",
   },
   {
     title: "who killed rimaz?",
