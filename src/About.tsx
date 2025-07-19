@@ -27,20 +27,20 @@ export default function AboutContent() {
               inactive twitter (or X)
             </a>
             <a
+              href="mailto:noahfiner@gmail.com"
+              target="_blank"
+              rel="noreferrer"
+              className="text-primary hover:bg-primary hover:text-secondary p-4 border-2 border-primary"
+            >
+              email me (offline until 7/27)
+            </a>
+            <a
               href="https://github.com/noahfiner"
               target="_blank"
               rel="noreferrer"
               className="text-primary hover:bg-primary hover:text-secondary p-4 border-2 border-primary"
             >
               github
-            </a>
-            <a
-              href="mailto:noahfiner@gmail.com"
-              target="_blank"
-              rel="noreferrer"
-              className="text-primary hover:bg-primary hover:text-secondary p-4 border-2 border-primary"
-            >
-              email me
             </a>
             <a
               href="https://old.noahfiner.com"
